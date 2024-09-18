@@ -80,7 +80,8 @@ input[type="file"] {
 .search-container input, .search-container button {
     margin: 0 5px;
     padding: 5px;
-    font-size: 13px;
+    font-size: 14px;
+    border: 2px solid black;
 }
 
 /* Table styles */
