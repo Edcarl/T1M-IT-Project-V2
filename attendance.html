@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance Monitoring System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
+    
+</head>
+<body>
+    <div class="floating-container" id="floatingContainer">
+        <input type="file" id="fileInput" accept=".xls,.xlsx">
+        <div class="search-container">
+            <input type="text" id="searchEmployeeId" placeholder="Search by Employee ID">
+            <input type="date" id="searchDate">
+            <button id="searchButton">Search</button>
+        </div>
+        <h2>Employee Specific Data</h2>
+        <div class="table-container">
+            <table id="employeeTable" border="1">
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Date</th>
+                        <th>Time In</th>
+                        <th>Time Out</th>
+                        <th>Total Hours</th>
+                        <th>Status</th>
+                        <th>Late</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    
+        <button id="clearButton">Clear</button>
+    </div> 
+    <div class="container">
+        <h2>Employee Work Hours</h2>
+        <div class="table-container">
+            <table id="outputTable" border="1">
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Date</th>
+                        <th>Time In</th>
+                        <th>Time Out</th>
+                        <th>Total Hours</th>
+                        <th>Status</th>
+                        <th>Late</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <h2>Work Hours Summary</h2>
+        <div class="table-container">
+            <table id="summaryTable" border="1">
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <button id="btn-export">Export as XLSX</button>
+    <script src="script.js"></script>
+</body>
+</html>
