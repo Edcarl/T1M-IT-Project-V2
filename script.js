@@ -120,7 +120,6 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
                 tr.appendChild(totalHoursCell);
                 tr.appendChild(statusCell);
                 tr.appendChild(lateCell);
-                tr.appendChild(editButtonCell);
 
                 tableBody.appendChild(tr);
 
