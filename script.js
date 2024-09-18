@@ -168,6 +168,7 @@ document.getElementById('searchButton').addEventListener('click', function() {
                     const td = document.createElement('td');
                     if (cells[j].querySelector('input')) {
                         const input = cells[j].querySelector('input');
+                        
                         td.appendChild(input.cloneNode(true));
                     } else {
                         td.textContent = cells[j].textContent;
