@@ -22,6 +22,21 @@ body {
     border-radius: 8px;
 }
 
+#outputTable thead tr {
+    position: sticky;
+    top: 0;
+    background-color: #fff; /* Optional: to ensure the header has a background */
+    z-index: 1; /* Ensure the header is above the table rows */
+}
+
+#employeeTable thead tr {
+    position: sticky;
+    top: 0;
+    background-color: #fff; /* Optional: to ensure the header has a background */
+    z-index: 1; /* Ensure the header is above the table rows */
+}
+
+
 
 /* Container for tables */
 .container {

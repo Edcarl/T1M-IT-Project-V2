@@ -9,9 +9,9 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         const rows = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
 
         const tableBody = document.querySelector('#outputTable tbody');
-        const summaryBody = document.querySelector('#summaryTable tbody');
+        // const summaryBody = document.querySelector('#summaryTable tbody');
         tableBody.innerHTML = '';
-        summaryBody.innerHTML = '';
+        // summaryBody.innerHTML = '';
 
         const employeeData = {};
 
@@ -125,19 +125,19 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
 
         tableBody.appendChild(tr);
 
-                const summaryTr = document.createElement('tr');
-                const summaryEmployeeIdCell = document.createElement('td');
-                const summaryDateCell = document.createElement('td');
-                // const statusCell1 = document.createElement('td');
+                // const summaryTr = document.createElement('tr');
+                // const summaryEmployeeIdCell = document.createElement('td');
+                // const summaryDateCell = document.createElement('td');
+                // // const statusCell1 = document.createElement('td');
 
-                summaryEmployeeIdCell.textContent = employeeId;
-                summaryDateCell.textContent = date;
-                // statusCell1.textContent = status;
+                // summaryEmployeeIdCell.textContent = employeeId;
+                // summaryDateCell.textContent = date;
+                // // statusCell1.textContent = status;
 
-                summaryTr.appendChild(summaryEmployeeIdCell);
-                summaryTr.appendChild(summaryDateCell);
-                // summaryTr.appendChild(statusCell);
-                summaryBody.appendChild(summaryTr);
+                // summaryTr.appendChild(summaryEmployeeIdCell);
+                // summaryTr.appendChild(summaryDateCell);
+                // // summaryTr.appendChild(statusCell);
+                // summaryBody.appendChild(summaryTr);
             }
         }
     };
@@ -197,7 +197,7 @@ function getJsDateFromExcel(excelDate) {
 }
 
 document.getElementById('btn-export').addEventListener('click', function() {
-    const table = document.getElementById('my-table');
+    const table = document.getElementById('outputTable');
     const workbook = XLSX.utils.table_to_book(table, { sheet: 'Sheet1' });
 
     // Get today's date
@@ -206,14 +206,11 @@ document.getElementById('btn-export').addEventListener('click', function() {
     const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
     const yyyy = today.getFullYear();
 
-    // Format the date as yyyy-mm-dd
-    const formattedDate = `${yyyy}-${mm}-${dd}`;
+    const todayDate = yyyy + '-' + mm + '-' + dd;
 
-    // Create the filename with the date
-    const filename = `TableData_${formattedDate}.xlsx`;
+    // Generate filename with today's date
+    const filename = `EmployeeData_${todayDate}.xlsx`;
 
-    // Export the workbook
     XLSX.writeFile(workbook, filename);
 });
-
 
