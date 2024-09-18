@@ -8,7 +8,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #423e3e;
 }
 
 /* Not floating  */
@@ -52,53 +52,22 @@ body {
 /* Upload input  */
 input[type="file"] {
     position: absolute;
-    font-size: 17px;
+    font-size: 13px;
     color: #b8b8b8;
   }
 
-/* Floating container */
-/* .floating-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 300px;
-    max-height: 80vh;
-    overflow-y: auto;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 20px;
-    z-index: 1000;
-    transition: width 0.3s, height 0.3s;
-}
-
-.floating-container.expanded {
-    width: 600px;
-    height: 80vh;
-    max-height: 500px;
-}
-
-.arrow {
-    cursor: pointer;
-    font-size: 20px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    transition: transform 0.3s;
-}
-
-.arrow.expanded {
-    transform: rotate(-90deg);
-} */
-
-
 #clearButton {
-    border: 2px solid rgb(255, 0, 0);
+    border: 2px solid rgb(0, 0, 0);
     background-color: rgb(255, 0, 0);
     color: rgb(255, 255, 255);
-    /* padding: 14px 28px;
-    font-size: 16px;
-    cursor: pointer; */
+    font-weight: bold;
+}
+
+#btn-export {
+    border: 2px solid black;
+    background-color: rgb(33, 155, 33);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
 }
 
 /* Search container */
@@ -109,9 +78,9 @@ input[type="file"] {
 }
 
 .search-container input, .search-container button {
-    margin: 0 10px;
-    padding: 10px;
-    font-size: 16px;
+    margin: 0 5px;
+    padding: 5px;
+    font-size: 13px;
 }
 
 /* Table styles */
