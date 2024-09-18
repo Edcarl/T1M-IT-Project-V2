@@ -40,90 +40,89 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
                 timestamps.sort((a, b) => a - b); // Sort timestamps
 
                 const timeIn = timestamps[0];
-        let timeOut = timestamps[timestamps.length - 1];
+                    let timeOut = timestamps[timestamps.length - 1];
 
-        const tr = document.createElement('tr');
-        const employeeIdCell = document.createElement('td');
-        const dateCell = document.createElement('td');
-        const timeInCell = document.createElement('td');
-        const timeOutCell = document.createElement('td');
-        const totalHoursCell = document.createElement('td');
-        const statusCell = document.createElement('td');
-        const lateCell = document.createElement('td');
-        const editButtonCell = document.createElement('td');
+                    const tr = document.createElement('tr');
+                    const employeeIdCell = document.createElement('td');
+                    const dateCell = document.createElement('td');
+                    const timeInCell = document.createElement('td');
+                    const timeOutCell = document.createElement('td');
+                    const totalHoursCell = document.createElement('td');
+                    const statusCell = document.createElement('td');
+                    const lateCell = document.createElement('td');
+                    const editButtonCell = document.createElement('td');
 
-        employeeIdCell.textContent = employeeId;
-        dateCell.textContent = date;
-        timeInCell.textContent = timeIn.toLocaleTimeString('en-US', { hour12: true });
+                    employeeIdCell.textContent = employeeId;
+                    dateCell.textContent = date;
+                    timeInCell.textContent = timeIn.toLocaleTimeString('en-US', { hour12: true });
 
-        const timeOutInput = document.createElement('input');
-        timeOutInput.type = 'time';
-        timeOutInput.value = timestamps.length > 1 ? timeOut.toLocaleTimeString('en-US', { hour12: false }) : '';
-        timeOutCell.appendChild(timeOutInput);
+                    const timeOutInput = document.createElement('input');
+                    timeOutInput.type = 'time';
+                    timeOutInput.value = timestamps.length > 1 ? timeOut.toLocaleTimeString('en-US', { hour12: false }) : '';
+                    timeOutCell.appendChild(timeOutInput);
 
+                const updateTotalHours = () => {
+                    const timeOutValue = timeOutInput.value;
+                    if (timeOutValue) {
+                        const [hours, minutes] = timeOutValue.split(':');
+                        timeOut.setHours(hours, minutes);
 
-        const updateTotalHours = () => {
-            const timeOutValue = timeOutInput.value;
-            if (timeOutValue) {
-                const [hours, minutes] = timeOutValue.split(':');
-                timeOut.setHours(hours, minutes);
+                        const totalHours = ((timeOut - timeIn) / (1000 * 60 * 60)).toFixed(2); // Calculate total hours
+                        totalHoursCell.textContent = totalHours;
 
-                const totalHours = ((timeOut - timeIn) / (1000 * 60 * 60)).toFixed(2); // Calculate total hours
-                totalHoursCell.textContent = totalHours;
+                        let status;
+                        if (totalHours-1 < 7.5 && totalHours-1 > 0) {
+                            let deficit = Math.round(8 - totalHours+1);
+                            status = "Under time: " + deficit + " hour/s";
+                        } else if (totalHours-1 > 8.5) {
+                            let OT = Math.round(totalHours-1 - 8);
+                            status = "Over time: " + OT + " hour/s";
+                        } else if (totalHours <= 0) {
+                            status = "Didn't clock out";
+                        } else {
+                            status = "Regular time";
+                        }
+                        statusCell.textContent = status;
+                    } else {
+                        totalHoursCell.textContent = "N/A";
+                        statusCell.textContent = "Didn't clock out";
+                    }
 
-                let status;
-                if (totalHours-1 < 7.5 && totalHours-1 > 0) {
-                    let deficit = Math.round(8 - totalHours+1);
-                    status = "Under time: " + deficit + " hour/s";
-                } else if (totalHours-1 > 8.5) {
-                    let OT = Math.round(totalHours-1 - 8);
-                    status = "Over time: " + OT + " hour/s";
-                } else if (totalHours <= 0) {
-                    status = "Didn't clock out";
-                } else {
-                    status = "Regular time";
-                }
-                statusCell.textContent = status;
-            } else {
-                totalHoursCell.textContent = "N/A";
-                statusCell.textContent = "Didn't clock out";
-            }
+                    const scheduledTimeIn = new Date(timeIn);
+                    scheduledTimeIn.setHours(8, 30, 0, 0); // Set to 8:30 AM
 
-            const scheduledTimeIn = new Date(timeIn);
-            scheduledTimeIn.setHours(8, 30, 0, 0); // Set to 8:30 AM
+                    let lateness = 0;
+                    if (timeIn > scheduledTimeIn) {
+                        lateness = (timeIn - scheduledTimeIn) / (1000 * 60); // Calculate lateness in minutes
+                    }
 
-            let lateness = 0;
-            if (timeIn > scheduledTimeIn) {
-                lateness = (timeIn - scheduledTimeIn) / (1000 * 60); // Calculate lateness in minutes
-            }
+                    const hoursLate = Math.floor(lateness / 60);
+                    const minutesLate = Math.floor(lateness % 60);
 
-            const hoursLate = Math.floor(lateness / 60);
-            const minutesLate = Math.floor(lateness % 60);
+                    if (hoursLate === 0 && minutesLate === 0) {
+                        lateCell.textContent = 'NA';
+                    } else if (hoursLate === 0) {
+                        lateCell.textContent = `${minutesLate} min/s late`;
+                    }
+                    else {
+                        lateCell.textContent = `${hoursLate}hr/s and ${minutesLate}min/s`;
+                    }
+                    
+                };
 
-            if (hoursLate === 0 && minutesLate === 0) {
-                lateCell.textContent = 'NA';
-            } else if (hoursLate === 0) {
-                lateCell.textContent = `${minutesLate} min/s late`;
-            }
-            else {
-                lateCell.textContent = `${hoursLate}hr/s and ${minutesLate}min/s`;
-            }
-            
-        };
+                timeOutInput.addEventListener('change', updateTotalHours);
+                updateTotalHours();
 
-        timeOutInput.addEventListener('change', updateTotalHours);
-        updateTotalHours();
+                tr.appendChild(employeeIdCell);
+                tr.appendChild(dateCell);
+                tr.appendChild(timeInCell);
+                tr.appendChild(timeOutCell);
+                tr.appendChild(totalHoursCell);
+                tr.appendChild(statusCell);
+                tr.appendChild(lateCell);
+                tr.appendChild(editButtonCell);
 
-        tr.appendChild(employeeIdCell);
-        tr.appendChild(dateCell);
-        tr.appendChild(timeInCell);
-        tr.appendChild(timeOutCell);
-        tr.appendChild(totalHoursCell);
-        tr.appendChild(statusCell);
-        tr.appendChild(lateCell);
-        tr.appendChild(editButtonCell);
-
-        tableBody.appendChild(tr);
+                tableBody.appendChild(tr);
 
                 // const summaryTr = document.createElement('tr');
                 // const summaryEmployeeIdCell = document.createElement('td');
@@ -163,25 +162,24 @@ document.getElementById('searchButton').addEventListener('click', function() {
         const timeOutInput = cells[3].querySelector('input');
         const timeOutValue = timeOutInput ? timeOutInput.value : '';
 
-        if ((employeeId === '' || rowEmployeeId.includes(employeeId)) &&
-            (date === '' || rowDate === new Date(date).toLocaleDateString('en-GB'))) {
-            const tr = document.createElement('tr');
-            for (let j = 0; j < cells.length; j++) {
-                const td = document.createElement('td');
-                if (cells[j].querySelector('input')) {
-                    const input = cells[j].querySelector('input');
-                    td.appendChild(input.cloneNode(true));
-                } else {
-                    td.textContent = cells[j].textContent;
+            if ((employeeId === '' || rowEmployeeId.includes(employeeId)) &&
+                (date === '' || rowDate === new Date(date).toLocaleDateString('en-GB'))) {
+                const tr = document.createElement('tr');
+                for (let j = 0; j < cells.length; j++) {
+                    const td = document.createElement('td');
+                    if (cells[j].querySelector('input')) {
+                        const input = cells[j].querySelector('input');
+                        td.appendChild(input.cloneNode(true));
+                    } else {
+                        td.textContent = cells[j].textContent;
+                    }
+                    tr.appendChild(td);
                 }
-                tr.appendChild(td);
+                employeeTableBody.appendChild(tr);
             }
-            employeeTableBody.appendChild(tr);
-        }
     }
     
 });
-
 
 document.getElementById('clearButton').addEventListener('click', function() {
     const employeeTableBody = document.getElementById('employeeTable').getElementsByTagName('tbody')[0];
@@ -199,6 +197,7 @@ function getJsDateFromExcel(excelDate) {
 document.getElementById('btn-export').addEventListener('click', function() {
     const table = document.getElementById('outputTable');
     const workbook = XLSX.utils.table_to_book(table, { sheet: 'Sheet1' });
+    const fileInput = document.getElementById('fileInput');
 
     // Get today's date
     const today = new Date();
@@ -211,6 +210,10 @@ document.getElementById('btn-export').addEventListener('click', function() {
     // Generate filename with today's date
     const filename = `EmployeeData_${todayDate}.xlsx`;
 
+    if (!fileInput.files.length) {
+        alert('Please select a file before exporting.');
+        return;
+    }
+
     XLSX.writeFile(workbook, filename);
 });
-
