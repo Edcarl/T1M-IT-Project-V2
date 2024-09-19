@@ -208,7 +208,7 @@ document.getElementById('btn-export').addEventListener('click', function() {
     const todayDate = yyyy + '-' + mm + '-' + dd;
 
     // Generate filename with today's date
-    const filename = `EmployeeData_${todayDate}.xlsx`;
+    const filename = `EmployeeAttendance_${todayDate}.xlsx`;
 
     if (!fileInput.files.length) {
         alert('Please select a file before exporting.');
