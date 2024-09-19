@@ -195,7 +195,8 @@ document.getElementById('clearButton').addEventListener('click', function() {
     }   
 
 document.getElementById('btn-export').addEventListener('click', function() {
-    const table = document.getElementById('outputTable');
+    // const table = document.getElementById('outputTable');
+    const table = document.getElementById('employeeTable');
     const workbook = XLSX.utils.table_to_book(table, { sheet: 'Sheet1' });
     const fileInput = document.getElementById('fileInput');
 
