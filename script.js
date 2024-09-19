@@ -187,12 +187,12 @@ document.getElementById('clearButton').addEventListener('click', function() {
 });
 
 // Function to convert Excel date to JavaScript date
-function getJsDateFromExcel(excelDate) {
-    const excelEpoch = new Date(1899, 11, 30); // Excel epoch starts on December 30, 1899
-    const msPerDay = 86400000; // Number of milliseconds in a day
-    const jsDate = new Date(excelEpoch.getTime() + excelDate * msPerDay);
-    return jsDate;
-}
+    function getJsDateFromExcel(excelDate) {
+        const excelEpoch = new Date(1899, 11, 30); // Excel epoch starts on December 30, 1899
+        const msPerDay = 86400000; // Number of milliseconds in a day
+        const jsDate = new Date(excelEpoch.getTime() + excelDate * msPerDay);
+        return jsDate;
+    }   
 
 document.getElementById('btn-export').addEventListener('click', function() {
     const table = document.getElementById('outputTable');
@@ -216,4 +216,8 @@ document.getElementById('btn-export').addEventListener('click', function() {
     }
 
     XLSX.writeFile(workbook, filename);
+});
+
+document.getElementById('btn-reload').addEventListener('click', function() { 
+    location.reload();
 });

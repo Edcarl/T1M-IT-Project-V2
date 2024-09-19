@@ -57,9 +57,17 @@ input[type="file"] {
   }
 
 ::-webkit-file-upload-button{
-    background-color: #423e3e;
+    background-color: #6d6d6d;
+    border: none;
     color: white;
-    border: 2px solid rgb(0, 0, 0);
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
   }
 
 ::-webkit-file-upload-button:hover{
@@ -67,10 +75,17 @@ input[type="file"] {
   }
 
 #clearButton {
-    border: 2px solid rgb(0, 0, 0);
-    background-color: rgb(255, 0, 0);
-    color: rgb(255, 255, 255);
-    font-weight: bold;
+    background-color: #e40202;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
 }
 
 #clearButton:hover {
@@ -84,7 +99,7 @@ input[type="file"] {
     margin-bottom: 20px;
 }
 
-.search-container input, .search-container button {
+.search-container input {
     margin: 0 5px;
     padding: 5px;
     font-size: 14px;
@@ -92,13 +107,17 @@ input[type="file"] {
 }
 
 .search-container button {
-    margin: 0 5px;
-    padding: 5px;
-    font-size: 14px;
-    border: 2px solid black;
-    background-color: green;
+    background-color: #00aa00;
+    border: none;
     color: white;
-    font-weight: bold;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
 }
 
 .search-container button:hover {
@@ -106,13 +125,38 @@ input[type="file"] {
 }
 
 #btn-export {
-    border: 2px solid black;
-    background-color: rgb(33, 155, 33);
-    color: rgb(255, 255, 255);
-    font-weight: bold;
+    background-color: #00aa00;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+#btn-reload {
+    background-color: #00aa00;
+    border: none;
+    color: white;
+    padding: 15px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
 }
 
 #btn-export:hover {
+    background-color: #2eb2ff;
+}
+
+#btn-reload:hover {
     background-color: #2eb2ff;
 }
 
