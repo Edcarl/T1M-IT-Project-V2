@@ -68,12 +68,13 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
                         timeOut.setHours(hours, minutes);
 
                         const totalHours = ((timeOut - timeIn) / (1000 * 60 * 60)).toFixed(2); // Calculate total hours
+                        const totalMins = ((timeOut - timeIn) / (1000 * 60)).toFixed(2);
                         totalHoursCell.textContent = totalHours;
 
                         let status;
                         if (totalHours-1 < 7.5 && totalHours-1 > 0) {
-                            let deficit = Math.round(8 - totalHours+1);
-                            status = "Under time: " + deficit + " hour/s";
+                            let deficit = Math.round(480 - totalMins+60);
+                            status = "Under time: " + deficit + " mins";
                         } else if (totalHours-1 > 8.5) {
                             let OT = Math.round(totalHours-1 - 8);
                             status = "Over time: " + OT + " hour/s";
