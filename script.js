@@ -93,7 +93,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
 
                     let lateness = 0;
                     if (timeIn > scheduledTimeIn) {
-                        lateness = (timeIn - scheduledTimeIn) / (1000 * 60); // Calculate lateness in minutes
+                        lateness = (timeIn - scheduledTimeIn) / (1000 * 60); // in minutes
                     }
 
                     const hoursLate = Math.floor(lateness / 60);
@@ -157,7 +157,7 @@ document.getElementById('searchButton').addEventListener('click', function() {
         const rowEmployeeId = cells[0].textContent.toLowerCase();
         const rowDate = cells[1].textContent;
 
-        // Assuming timeOutInput is in the 4th cell (index 3)
+        // timeOutInput is in the 4th cell (index 3)
         const timeOutInput = cells[3].querySelector('input');
         const timeOutValue = timeOutInput ? timeOutInput.value : '';
 

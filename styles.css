@@ -11,6 +11,11 @@ body {
     background-color: #423e3e;
 }
 
+.titleText {
+    text-shadow: black;
+    color: #f4f4f4;
+}
+
 /* Not floating  */
 .floating-container {
     width: 90%;
@@ -25,15 +30,15 @@ body {
 #outputTable thead tr {
     position: sticky;
     top: 0;
-    background-color: #fff; /* Optional: to ensure the header has a background */
-    z-index: 1; /* Ensure the header is above the table rows */
+    background-color: #fff; 
+    z-index: 1; 
 }
 
 #employeeTable thead tr {
     position: sticky;
     top: 0;
-    background-color: #fff; /* Optional: to ensure the header has a background */
-    z-index: 1; /* Ensure the header is above the table rows */
+    background-color: #fff; 
+    z-index: 1; 
 }
 
 
@@ -48,7 +53,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
-
+/* Buttons */
 /* Upload input  */
 input[type="file"] {
     position: absolute;
