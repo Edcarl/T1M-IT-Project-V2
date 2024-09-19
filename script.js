@@ -123,20 +123,6 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
                 tr.appendChild(lateCell);
 
                 tableBody.appendChild(tr);
-
-                // const summaryTr = document.createElement('tr');
-                // const summaryEmployeeIdCell = document.createElement('td');
-                // const summaryDateCell = document.createElement('td');
-                // // const statusCell1 = document.createElement('td');
-
-                // summaryEmployeeIdCell.textContent = employeeId;
-                // summaryDateCell.textContent = date;
-                // // statusCell1.textContent = status;
-
-                // summaryTr.appendChild(summaryEmployeeIdCell);
-                // summaryTr.appendChild(summaryDateCell);
-                // // summaryTr.appendChild(statusCell);
-                // summaryBody.appendChild(summaryTr);
             }
         }
     };
