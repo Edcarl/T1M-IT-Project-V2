@@ -166,9 +166,15 @@ document.getElementById('searchButton').addEventListener('click', function() {
                 const tr = document.createElement('tr');
                 for (let j = 0; j < cells.length; j++) {
                     const td = document.createElement('td');
-                    if (cells[j].querySelector('input')) {
-                        const input = cells[j].querySelector('input');
+                    // if (cells[j].querySelector('input')) {
+                    //     const input = cells[j].querySelector('input');
                         
+                    //     td.appendChild(input.cloneNode(true));
+                    if (j === 3 && timeOutInput) {
+                        // Convert timeOutInput value to text
+                        td.textContent = timeOutValue;
+                    } else if (cells[j].querySelector('input')) {
+                        const input = cells[j].querySelector('input');
                         td.appendChild(input.cloneNode(true));
                     } else {
                         td.textContent = cells[j].textContent;
